@@ -28,11 +28,13 @@
       <el-table-column
         prop="公司名称"
         label="公司名称"
+        width="150"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
         prop="客户名称"
         label="客户名称"
+        width="150"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
@@ -62,13 +64,11 @@
       <el-table-column
         prop="项目名称"
         label="项目名称"
-        width="100"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
         prop="项目类别"
         label="项目类别"
-        width="120"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column

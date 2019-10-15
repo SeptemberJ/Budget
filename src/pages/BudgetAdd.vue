@@ -1,6 +1,6 @@
 <template>
   <div class="BudgetAdd">
-        <h2 class="MarginT_10 MarginB_20">工程项目预决算表</h2>
+    <h2 class="MarginT_10 MarginB_20">工程项目预决算表</h2>
     <el-row>
       <el-form class="DisabledNormal" ref="formBudget" :rules="rules" :model="formBudget" label-width="100px">
         <el-col :span="8">
@@ -164,7 +164,7 @@
           <td></td>
           <td>1001.01</td>
           <td>其中：银行 </td>
-          <td><el-input v-model="budget['100101']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['100101']" size="small"></el-input></td>
           <td>{{finalAccounts['100101'] > 0 ? finalAccounts['100101'] : ''}}</td>
           <td></td>
           <td></td>
@@ -173,7 +173,7 @@
           <td></td>
           <td>1001.02</td>
           <td>票据</td>
-          <td><el-input v-model="budget['100102']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['100102']" size="small"></el-input></td>
           <td>{{finalAccounts['100102'] > 0 ? finalAccounts['100102'] : ''}}</td>
           <td></td>
           <td></td>
@@ -192,7 +192,7 @@
           <td></td>
           <td>1201.01</td>
           <td>主设备</td>
-          <td><el-input v-model="budget['120101']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['120101']" size="small"></el-input></td>
           <td>{{finalAccounts['120101'] > 0 ? finalAccounts['120101'] : ''}}</td>
           <td></td>
           <td></td>
@@ -201,7 +201,7 @@
           <td></td>
           <td>1201.02</td>
           <td>配套设备</td>
-          <td><el-input v-model="budget['120102']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['120102']" size="small"></el-input></td>
           <td>{{finalAccounts['120102'] > 0 ? finalAccounts['120102'] : ''}}</td>
           <td></td>
           <td></td>
@@ -210,7 +210,7 @@
           <td></td>
           <td>1201.03</td>
           <td>其他部件费</td>
-          <td><el-input v-model="budget['120103']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['120103']" size="small"></el-input></td>
           <td>{{finalAccounts['120103'] > 0 ? finalAccounts['120103'] : ''}}</td>
           <td></td>
           <td></td>
@@ -219,7 +219,7 @@
           <td></td>
           <td>1201.04</td>
           <td>其他材料</td>
-          <td><el-input v-model="budget['120104']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['120104']" size="small"></el-input></td>
           <td>{{finalAccounts['120104'] > 0 ? finalAccounts['120104'] : ''}}</td>
           <td></td>
           <td></td>
@@ -238,7 +238,7 @@
           <td></td>
           <td>1301.01</td>
           <td>材料及人工调试费</td>
-          <td><el-input v-model="budget['130101']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130101']" size="small"></el-input></td>
           <td>{{finalAccounts['130101'] > 0 ? finalAccounts['130101'] : ''}}</td>
           <td></td>
           <td></td>
@@ -247,7 +247,7 @@
           <td></td>
           <td>1301.02</td>
           <td>外包费用（10%）</td>
-          <td><el-input v-model="budget['130102']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130102']" size="small"></el-input></td>
           <td>{{finalAccounts['130102'] > 0 ? finalAccounts['130102'] : ''}}</td>
           <td></td>
           <td></td>
@@ -256,7 +256,7 @@
           <td></td>
           <td>1301.03</td>
           <td>外包费用（3%）</td>
-          <td><el-input v-model="budget['130103']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130103']" size="small"></el-input></td>
           <td>{{finalAccounts['130103'] > 0 ? finalAccounts['130103'] : ''}}</td>
           <td></td>
           <td></td>
@@ -265,7 +265,7 @@
           <td></td>
           <td>1301.04</td>
           <td>外包费用（无）</td>
-          <td><el-input v-model="budget['130104']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130104']" size="small"></el-input></td>
           <td>{{finalAccounts['130104'] > 0 ? finalAccounts['130104'] : ''}}</td>
           <td></td>
           <td></td>
@@ -274,7 +274,7 @@
           <td></td>
           <td>1301.05</td>
           <td>配合费</td>
-          <td><el-input v-model="budget['130105']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130105']" size="small"></el-input></td>
           <td>{{finalAccounts['130105'] > 0 ? finalAccounts['130105'] : ''}}</td>
           <td></td>
           <td></td>
@@ -283,7 +283,7 @@
           <td></td>
           <td>1301.06</td>
           <td>其他</td>
-          <td><el-input v-model="budget['130106']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['130106']" size="small"></el-input></td>
           <td>{{finalAccounts['130106'] > 0 ? finalAccounts['130106'] : ''}}</td>
           <td></td>
           <td></td>
@@ -302,7 +302,7 @@
           <td></td>
           <td>1401.01</td>
           <td>差旅费</td>
-          <td><el-input v-model="budget['140101']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140101']" size="small"></el-input></td>
           <td>{{finalAccounts['140101'] > 0 ? finalAccounts['140101'] : ''}}</td>
           <td></td>
           <td></td>
@@ -311,7 +311,7 @@
           <td></td>
           <td>1401.02</td>
           <td>招待费</td>
-          <td><el-input v-model="budget['140102']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140102']" size="small"></el-input></td>
           <td>{{finalAccounts['140102'] > 0 ? finalAccounts['140102'] : ''}}</td>
           <td></td>
           <td></td>
@@ -320,7 +320,7 @@
           <td></td>
           <td>1401.03</td>
           <td>标书及嗮图费</td>
-          <td><el-input v-model="budget['140103']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140103']" size="small"></el-input></td>
           <td>{{finalAccounts['140103'] > 0 ? finalAccounts['140103'] : ''}}</td>
           <td></td>
           <td></td>
@@ -329,7 +329,7 @@
           <td></td>
           <td>1401.04</td>
           <td>外劳费</td>
-          <td><el-input v-model="budget['140104']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140104']" size="small"></el-input></td>
           <td>{{finalAccounts['140104'] > 0 ? finalAccounts['140104'] : ''}}</td>
           <td></td>
           <td></td>
@@ -338,7 +338,7 @@
           <td></td>
           <td>1401.05</td>
           <td>中标服务费</td>
-          <td><el-input v-model="budget['140105']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140105']" size="small"></el-input></td>
           <td>{{finalAccounts['140105'] > 0 ? finalAccounts['140105'] : ''}}</td>
           <td></td>
           <td></td>
@@ -347,7 +347,7 @@
           <td></td>
           <td>1401.06</td>
           <td>其他综合费用</td>
-          <td><el-input v-model="budget['140106']" placeholder="请输入" size="small"></el-input></td>
+          <td><el-input v-model="budget['140106']" size="small"></el-input></td>
           <td>{{finalAccounts['140106'] > 0 ? finalAccounts['140106'] : ''}}</td>
           <td></td>
           <td></td>
@@ -358,8 +358,8 @@
           <!-- <td>5<i class="el-icon-caret-bottom" v-if="!ifShow"></i><i class="el-icon-caret-top" v-if="ifShow"></i></td> -->
           <td>1501</td>
           <td>税费</td>
-          <td>{{((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2)}}</td>
-          <td>{{((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2)}}</td>
+          <td>{{((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)}}</td>
+          <td>{{((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)}}</td>
           <td></td>
           <td></td>
         </tr>
@@ -368,7 +368,6 @@
           <td>1701.01</td>
           <td>增值税  13%</td>
           <td>{{formBudget.rate == 'C' ? (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
-          <!-- <td>{{((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)}}</td> -->
           <td>{{formBudget.rate == 'C' ? (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
           <td></td>
           <td></td>
@@ -378,7 +377,6 @@
           <td>1701.02</td>
           <td>增值税  3%</td>
           <td>{{formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
-          <!-- <td>{{(Number(budget['1001']) / 1.03 * 0.03).toFixed(2)}}</td> -->
           <td>{{formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
           <td></td>
           <td></td>
@@ -388,7 +386,6 @@
           <td>1701.03</td>
           <td>增值税 9%</td>
           <td>{{formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
-          <!-- <td>{{(Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)}}</td> -->
           <td>{{formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : 0}}</td>
           <td></td>
           <td></td>
@@ -398,8 +395,6 @@
           <td>1701.12</td>
           <td>税金附加</td>
           <td>{{((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * 0.1).toFixed(2)}}</td>
-          <!-- <td>{{((((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03) + (Number(budget['1001']) / 1.03 * 0.03)
- + (Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03)) * 0.1).toFixed(2)}}</td> -->
           <td>{{((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * 0.1).toFixed(2)}}</td>
           <td></td>
           <td></td>
@@ -436,9 +431,10 @@
           <td>6</td>
           <td>1601</td>
           <td>毛利润</td>
-          <td>{{Number(budget['1001']) == 0 ? 0 : (((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2)))).toFixed(2))}}</td>
-          <!-- <td><el-input v-model="budget['1601']" placeholder="请输入" size="small"></el-input></td> -->
-          <td>{{Number(finalAccounts['1001']) == 0 ? 0 : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2)))).toFixed(2))}}</td>
+          <td>{{(((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2))}}</td>
+          <td>{{(((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2))}}</td>
+          <!-- <td>{{Number(budget['1001']) == 0 ? 0 : (((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2))}}</td>
+          <td>{{Number(finalAccounts['1001']) == 0 ? 0 : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2))}}</td> -->
           <td></td>
           <td></td>
         </tr>
@@ -457,8 +453,10 @@
           <td>8</td>
           <td>1801</td>
           <td>毛利率</td>
-          <td>{{Number(budget['1001']) == 0 ? 0 : (((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2))) / Number(budget['1001'])).toFixed(2))}}%</td>
-          <td>{{Number(finalAccounts['1001']) == 0 ? 0 : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2))) / Number(finalAccounts['1001'])).toFixed(2))}}%</td>
+          <td>{{!Number(budget['1001']) ? 0 : ((((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2)) / Number(budget['1001']) * 100).toFixed(2)}}%</td>
+          <td>{{!Number(finalAccounts['1001']) ? 0 : ((((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2)))).toFixed(2)) / Number(finalAccounts['1001']) * 100).toFixed(2)}}%</td>
+          <!-- <td>{{(Number(budget['1001']) == 0 ? 0 : (((Number(budget['1001']) - Number(budget['1201']) - Number(budget['1301']) - Number(budget['1401']) - (((formBudget.rate == 'A' ? ((Number(budget['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(budget['1001']) / 1.09 * 0.09 - Number(budget['1201']) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(budget['1001']) - Number(budget['1201'])) / 1.13 * 0.13 - Number(budget['130102']) / 1.09 * 0.09 - Number(budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(budget['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2))) / Number(budget['1001'])).toFixed(2)))}}%</td> -->
+          <!-- <td>{{(Number(finalAccounts['1001']) == 0 ? 0 : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201']) - Number(finalAccounts['1301']) - Number(finalAccounts['1401']) - (((formBudget.rate == 'A' ? ((Number(finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (formBudget.rate == 'B' ? ((Number(finalAccounts['1001']) / 1.09 * 0.09 - Number(finalAccounts['1201']) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(finalAccounts['1001']) - Number(finalAccounts['1201'])) / 1.13 * 0.13 - Number(finalAccounts['130102']) / 1.09 * 0.09 - Number(finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(finalAccounts['1001']) * (rateCompany + 0.0003 + rateManagement)).toFixed(2))) / Number(finalAccounts['1001'])).toFixed(2)) * 100)}}%</td> -->
           <td></td>
           <td></td>
         </tr>
@@ -1153,7 +1151,7 @@ export default {
               '1701.13': (Number(this.budget['1001']) * this.rateCompany).toFixed(2),
               '1701.14': (Number(this.budget['1001']) * 0.0003).toFixed(2),
               '1701.15': (Number(this.budget['1001']) * this.rateManagement).toFixed(2),
-              '1801': Number(this.budget['1001']) === 0 ? 0 : (((Number(this.budget['1001']) - Number(this.budget['1201']) - Number(this.budget['1301']) - Number(this.budget['1401']) - (((this.formBudget.rate === 'A' ? ((Number(this.budget['1001']) / 1.03 * 0.03).toFixed(2)) : (this.formBudget.rate === 'B' ? ((Number(this.budget['1001']) / 1.09 * 0.09 - Number(this.budget['1201']) / 1.13 * 0.13 - Number(this.budget['130102']) / 1.09 * 0.09 - Number(this.budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(this.budget['1001']) - Number(this.budget['1201'])) / 1.13 * 0.13 - Number(this.budget['130102']) / 1.09 * 0.09 - Number(this.budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(this.budget['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2))) / Number(this.budget['1001'])).toFixed(2))
+              '1801': ((Number(this.budget['1001']) === 0 ? 0 : (((Number(this.budget['1001']) - Number(this.budget['1201']) - Number(this.budget['1301']) - Number(this.budget['1401']) - (((this.formBudget.rate === 'A' ? ((Number(this.budget['1001']) / 1.03 * 0.03).toFixed(2)) : (this.formBudget.rate === 'B' ? ((Number(this.budget['1001']) / 1.09 * 0.09 - Number(this.budget['1201']) / 1.13 * 0.13 - Number(this.budget['130102']) / 1.09 * 0.09 - Number(this.budget['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(this.budget['1001']) - Number(this.budget['1201'])) / 1.13 * 0.13 - Number(this.budget['130102']) / 1.09 * 0.09 - Number(this.budget['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(this.budget['1001']) * (this.rateCompany + 0.0003 + this.rateManagement)).toFixed(2)))).toFixed(2))) / Number(this.budget['1001']) * 1).toFixed(2)
             },
             {
               '1001.01': this.finalAccounts['100101'],
@@ -1181,7 +1179,7 @@ export default {
               '1701.13': (Number(this.finalAccounts['1001']) * 0.04).toFixed(2),
               '1701.14': (Number(this.finalAccounts['1001']) * 0.0003).toFixed(2),
               '1701.15': (Number(this.finalAccounts['1001']) * 0.04).toFixed(2),
-              '1801': Number(this.finalAccounts['1001']) === 0 ? 0 : (((Number(this.finalAccounts['1001']) - Number(this.finalAccounts['1201']) - Number(this.finalAccounts['1301']) - Number(this.finalAccounts['1401']) - (((this.formBudget.rate === 'A' ? ((Number(this.finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (this.formBudget.rate === 'B' ? ((Number(this.finalAccounts['1001']) / 1.09 * 0.09 - Number(this.finalAccounts['1201']) / 1.13 * 0.13 - Number(this.finalAccounts['130102']) / 1.09 * 0.09 - Number(this.finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(this.finalAccounts['1001']) - Number(this.finalAccounts['1201'])) / 1.13 * 0.13 - Number(this.finalAccounts['130102']) / 1.09 * 0.09 - Number(this.finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(this.finalAccounts['1001']) * (0.04 + 0.0003 + 0.04)).toFixed(2))) / Number(this.finalAccounts['1001'])).toFixed(2))
+              '1801': ((Number(this.finalAccounts['1001']) === 0 ? 0 : (((Number(this.finalAccounts['1001']) - Number(this.finalAccounts['1201']) - Number(this.finalAccounts['1301']) - Number(this.finalAccounts['1401']) - (((this.formBudget.rate === 'A' ? ((Number(this.finalAccounts['1001']) / 1.03 * 0.03).toFixed(2)) : (this.formBudget.rate === 'B' ? ((Number(this.finalAccounts['1001']) / 1.09 * 0.09 - Number(this.finalAccounts['1201']) / 1.13 * 0.13 - Number(this.finalAccounts['130102']) / 1.09 * 0.09 - Number(this.finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)) : (((Number(this.finalAccounts['1001']) - Number(this.finalAccounts['1201'])) / 1.13 * 0.13 - Number(this.finalAccounts['130102']) / 1.09 * 0.09 - Number(this.finalAccounts['130103']) / 1.03 * 0.03).toFixed(2)))) * (1 + 0.1) + Number(this.finalAccounts['1001']) * (this.rateCompany + 0.0003 + this.rateManagement)).toFixed(2)))).toFixed(2))) / Number(this.finalAccounts['1001']) * 1).toFixed(2)
             }
           ]}
           console.log(topData, botData)

@@ -1,97 +1,42 @@
 <template>
-  <div class="Outlay">
-    <!-- <H1>费 用</H1> -->
-    <!-- <el-button style="float:left;margin: 10px;" type="info" size="small" icon="el-icon-arrow-left" @click="back">返 回</el-button> -->
-    <el-button style="float:right;margin: 10px;" type="primary" size="small" @click="exportExcel">导 出</el-button>
+  <div class="Fee">
+    <el-button style="float:right;margin: 10px;" icon="el-icon-printer" type="primary" size="small" @click="exportExcel">导 出</el-button>
     <el-table
-      ref="OutlayTable"
-      :data="outlayList"
+      ref="dataTable"
+      :data="dataList"
       style="width: 100%">
       <el-table-column
         type="index"
         width="50">
       </el-table-column>
       <el-table-column
-        property="F1"
-        label="单据编号"
-        width="120"
+        property="项目名称"
+        label="项目名称"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        property="F2"
-        label="申请日期"
-        width="120"
+        property="合同金额"
+        label="合同金额"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        property="F3"
-        label="事由"
+        property="累计开票"
+        label="累计开票"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        property="F4"
-        label="申请人"
-        width="100"
+        property="累计收款"
+        label="累计收款"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        property="F5"
-        label="申请部门"
-        width="120"
+        property="开票应收款"
+        label="开票应收款"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        property="F6"
-        label="收款单位"
-        width="200"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F15"
-        label="施工队"
-        width="120"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F7"
-        label="发生日期"
-        width="120"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F8"
-        label="费用项目"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F9"
-        label="申请费用金额"
-        width="120"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F10"
-        label="核算项目"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F11"
-        label="项目编号"
-        width="120"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F12"
-        label="摘要"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        property="F13"
-        label="备注"
-        width="150"
+        property="合同应收款"
+        label="合同应收款"
         show-overflow-tooltip>
       </el-table-column>
     </el-table>
@@ -103,11 +48,11 @@
 import { Loading } from 'element-ui'
 import $ from 'jquery'
 export default {
-  name: 'Outlay',
-  props: ['projectCode', 'constructionTeam'],
+  name: 'Fee',
+  props: ['projectName'],
   data () {
     return {
-      outlayList: []
+      dataList: []
     }
   },
   computed: {
@@ -116,14 +61,11 @@ export default {
     // })
   },
   created () {
-    this.getOutlayList()
+    this.getList()
   },
   methods: {
-    // 返回
-    back () {
-      this.$router.push({name: 'InfoDynamicTable'})
-    },
-    getOutlayList () {
+    getList () {
+      this.dataList = []
       let loadingInstance = Loading.service({
         lock: true,
         text: '加载中',
@@ -133,7 +75,7 @@ export default {
       tmpData += '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> '
       tmpData += '<soap:Body> '
       tmpData += '<JA_LIST xmlns="http://tempuri.org/">'
-      tmpData += "<FSQL><![CDATA[select * from zz_fee where f11='" + this.projectCode + "' and F15='" + this.constructionTeam + "']]></FSQL>"
+      tmpData += "<FSQL><![CDATA[select *,(累计开票-累计收款)开票应收款,(合同金额-累计收款)合同应收款 from Z_contract_detail where 项目名称='" + this.projectName + "']]></FSQL>"
       tmpData += '</JA_LIST>'
       tmpData += '</soap:Body>'
       tmpData += '</soap:Envelope>'
@@ -150,29 +92,22 @@ export default {
         console.log(Info)
         if (Info.length > 0) {
           let sumLine = {
-            F1: '合计',
-            F2: '',
-            F3: '',
-            F4: '',
-            F5: '',
-            F6: '',
-            F7: '',
-            F8: '',
-            F9: 0,
-            F10: '',
-            F11: '',
-            F12: '',
-            F13: ''
+            '项目名称': '合计',
+            '合同金额': 0,
+            '累计开票': 0,
+            '累计收款': 0,
+            '开票应收款': 0,
+            '合同应收款': 0
           }
           Info.map((item, idx) => {
-            sumLine.F9 = (Number(sumLine.F9) + Number(item.F9)).toFixed(2)
+            sumLine['项目名称'] = (Number(sumLine['项目名称']) + Number(item['项目名称'])).toFixed(2)
             if (idx === Info.length - 1) {
-              this.outlayList = Info.concat(sumLine)
+              this.dataList = Info.concat(sumLine)
               loadingInstance.close()
             }
           })
         } else {
-          this.outlayList = Info
+          this.dataList = Info
           loadingInstance.close()
         }
       }).catch((error) => {
@@ -184,10 +119,10 @@ export default {
     exportExcel () {
       require.ensure([], () => {
         const { exportJsonToExcel } = require('../vendor/Export2Excel.js')
-        const tHeader = ['单据编号', '申请日期', '事由', '申请人', '申请部门', '收款单位', '施工队', '发生日期', '费用项目', '申请费用金额', '核算项目', '项目编号', '摘要', '备注']
-        const filterVal = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F15', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13']
-        const data = this.formatJson(filterVal, this.outlayList)
-        exportJsonToExcel(tHeader, data, '施工费用')
+        const tHeader = ['项目名称', '合同金额', '累计开票', '累计收款', '开票应收款', '合同应收款']
+        const filterVal = ['项目名称', '合同金额', '累计开票', '累计收款', '开票应收款', '合同应收款']
+        const data = this.formatJson(filterVal, this.dataList)
+        exportJsonToExcel(tHeader, data, '金额来源及明细')
       })
     },
     formatJson (filterVal, jsonData) {

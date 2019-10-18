@@ -38,7 +38,9 @@ body{
 .BgGray {
   background: dimgrey;
 }
-
+.FontBold{
+  font-weight: bold;
+}
 .MarginT_20{
   margin-top: 20px;
 }

@@ -1,10 +1,9 @@
 <template>
   <div class="Cost">
-    <!-- <H1>成 本</H1> -->
     <el-button style="float:right;margin: 10px;" type="primary" size="small" @click="exportExcel">导 出</el-button>
     <el-table
-      ref="CostTable"
-      :data="costList"
+      ref="dataTable"
+      :data="dataList"
       style="width: 100%">
       <el-table-column
         type="index"
@@ -144,19 +143,23 @@ import { Loading } from 'element-ui'
 import $ from 'jquery'
 export default {
   name: 'Cost',
-  props: ['projectCode', 'constructionTeam'],
+  props: ['projectName', 'parameter'],
   data () {
     return {
-      costList: []
+      dataList: []
     }
   },
   computed: {
+    // ...mapState({
+    //   cuXMMC: state => state.cuXMMC
+    // })
   },
   created () {
-    this.getCostList()
+    this.getList()
   },
   methods: {
-    getCostList () {
+    getList () {
+      this.dataList = []
       let loadingInstance = Loading.service({
         lock: true,
         text: '加载中',
@@ -166,7 +169,7 @@ export default {
       tmpData += '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> '
       tmpData += '<soap:Body> '
       tmpData += '<JA_LIST xmlns="http://tempuri.org/">'
-      tmpData += "<FSQL><![CDATA[select * from zz_fee where f11='" + this.projectCode + "' and F15='" + this.constructionTeam + "']]></FSQL>"
+      tmpData += "<FSQL><![CDATA[select * from ZZ_COST where F15='" + this.projectName + "' and F1='" + this.parameter + "']]></FSQL>"
       tmpData += '</JA_LIST>'
       tmpData += '</soap:Body>'
       tmpData += '</soap:Envelope>'
@@ -212,12 +215,12 @@ export default {
             sumLine.F12 = (Number(sumLine.F12) + Number(item.F12)).toFixed(2)
             sumLine.F14 = (Number(sumLine.F14) + Number(item.F14)).toFixed(2)
             if (idx === Info.length - 1) {
-              this.costList = Info.concat(sumLine)
+              this.dataList = Info.concat(sumLine)
               loadingInstance.close()
             }
           })
         } else {
-          this.costList = Info
+          this.dataList = Info
           loadingInstance.close()
         }
       }).catch((error) => {
@@ -231,8 +234,8 @@ export default {
         const { exportJsonToExcel } = require('../vendor/Export2Excel.js')
         const tHeader = ['类别', '含税金额', '日期', '单据编号', '购货单位', '产品长代码', '产品名称', '规格型号', '单位', '实发数量', '销售单价', '销售金额', '单位成本', '成本', '项目编号', '订单单号', '源单单号', '合同单号', '部门', '业务员', '源单类型']
         const filterVal = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23']
-        const data = this.formatJson(filterVal, this.costList)
-        exportJsonToExcel(tHeader, data, '成本')
+        const data = this.formatJson(filterVal, this.dataList)
+        exportJsonToExcel(tHeader, data, '金额来源及明细')
       })
     },
     formatJson (filterVal, jsonData) {

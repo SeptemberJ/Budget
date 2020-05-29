@@ -93,13 +93,18 @@ export default {
 
       this.Http.post('ja_login', tmpData
       ).then(res => {
+        // ie
+        console.log(typeof res.data)
         let xml = res.data
         let parser = new DOMParser()
         let xmlDoc = parser.parseFromString(xml, 'text/xml')
+        console.log(xmlDoc)
         // 提取数据
         let Result = xmlDoc.getElementsByTagName('ja_loginResponse')[0].getElementsByTagName('ja_loginResult')[0]
         let HtmlStr = $(Result).html()
         let Info = JSON.parse(HtmlStr)
+        console.log('login')
+        console.log('HtmlStr', HtmlStr)
         console.log(Info)
         switch (Info.status) {
           case '1':

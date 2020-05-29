@@ -12,7 +12,12 @@ const state = {
   useName: 'liubai',
   userInfo: null,
   budgetId: null,
-  filterProjectName: ''
+  filterCompanyName_budget: '',
+  filterDepartment_budget: '',
+  filterMonth_budget: '',
+  filterSalesMan_budget: '',
+  filterProjectName_budget: '',
+  curPage_budget: 1
 }
 
 const actions = {

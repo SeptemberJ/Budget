@@ -49,7 +49,7 @@ import { Loading } from 'element-ui'
 import $ from 'jquery'
 export default {
   name: 'Fee',
-  props: ['projectName'],
+  props: ['projectName', 'timeStamp'],
   data () {
     return {
       dataList: []
@@ -62,6 +62,11 @@ export default {
   },
   created () {
     this.getList()
+  },
+  watch: {
+    timeStamp: function () {
+      this.getList()
+    }
   },
   methods: {
     getList () {
@@ -100,7 +105,11 @@ export default {
             '合同应收款': 0
           }
           Info.map((item, idx) => {
-            sumLine['项目名称'] = (Number(sumLine['项目名称']) + Number(item['项目名称'])).toFixed(2)
+            sumLine['合同金额'] = (Number(sumLine['合同金额']) + Number(item['合同金额'])).toFixed(2)
+            sumLine['累计开票'] = (Number(sumLine['累计开票']) + Number(item['累计开票'])).toFixed(2)
+            sumLine['累计收款'] = (Number(sumLine['累计收款']) + Number(item['累计收款'])).toFixed(2)
+            sumLine['开票应收款'] = (Number(sumLine['开票应收款']) + Number(item['开票应收款'])).toFixed(2)
+            sumLine['合同应收款'] = (Number(sumLine['合同应收款']) + Number(item['合同应收款'])).toFixed(2)
             if (idx === Info.length - 1) {
               this.dataList = Info.concat(sumLine)
               loadingInstance.close()

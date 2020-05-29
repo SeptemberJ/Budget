@@ -69,13 +69,13 @@
       </el-table-column>
       <el-table-column
         property="F11"
-        label="销售单价"
+        label="含税成本"
         width="120"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
         property="F12"
-        label="销售金额"
+        label="价税合计"
         width="120"
         show-overflow-tooltip>
       </el-table-column>
@@ -143,7 +143,7 @@ import { Loading } from 'element-ui'
 import $ from 'jquery'
 export default {
   name: 'Cost',
-  props: ['projectName', 'parameter'],
+  props: ['projectName', 'parameter', 'timeStamp'],
   data () {
     return {
       dataList: []
@@ -156,6 +156,11 @@ export default {
   },
   created () {
     this.getList()
+  },
+  watch: {
+    timeStamp: function () {
+      this.getList()
+    }
   },
   methods: {
     getList () {
@@ -183,7 +188,7 @@ export default {
         let Result = xmlDoc.getElementsByTagName('JA_LISTResponse')[0].getElementsByTagName('JA_LISTResult')[0]
         let HtmlStr = $(Result).html()
         let Info = (JSON.parse(HtmlStr))
-        console.log(Info)
+        console.log('Info22', Info)
         if (Info.length > 0) {
           let sumLine = {
             F1: '合计',
@@ -232,7 +237,7 @@ export default {
     exportExcel () {
       require.ensure([], () => {
         const { exportJsonToExcel } = require('../vendor/Export2Excel.js')
-        const tHeader = ['类别', '含税金额', '日期', '单据编号', '购货单位', '产品长代码', '产品名称', '规格型号', '单位', '实发数量', '销售单价', '销售金额', '单位成本', '成本', '项目编号', '订单单号', '源单单号', '合同单号', '部门', '业务员', '源单类型']
+        const tHeader = ['类别', '含税金额', '日期', '单据编号', '购货单位', '产品长代码', '产品名称', '规格型号', '单位', '实发数量', '含税成本', '价税合计', '单位成本', '成本', '项目编号', '订单单号', '源单单号', '合同单号', '部门', '业务员', '源单类型']
         const filterVal = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23']
         const data = this.formatJson(filterVal, this.dataList)
         exportJsonToExcel(tHeader, data, '金额来源及明细')

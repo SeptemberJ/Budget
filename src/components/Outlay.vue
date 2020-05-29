@@ -94,7 +94,7 @@ import { Loading } from 'element-ui'
 import $ from 'jquery'
 export default {
   name: 'Outlay',
-  props: ['projectName', 'parameter'],
+  props: ['projectName', 'parameter', 'timeStamp'],
   data () {
     return {
       dataList: []
@@ -110,6 +110,17 @@ export default {
       this.getList()
     }
   },
+  watch: {
+    timeStamp: function () {
+      if (this.parameter === '140106') {
+        this.getList1()
+      } else if (this.parameter === '130104') {
+        this.getList2()
+      } else {
+        this.getList()
+      }
+    }
+  },
   methods: {
     getList () {
       this.dataList = []
@@ -122,7 +133,7 @@ export default {
       tmpData += '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> '
       tmpData += '<soap:Body> '
       tmpData += '<JA_LIST xmlns="http://tempuri.org/">'
-      tmpData += "<FSQL><![CDATA[select * from ZZ_FEE where f11='" + this.projectName + "' and F1='" + this.parameter + "']]></FSQL>"
+      tmpData += "<FSQL><![CDATA[select * from ZZ_FEE where f11='" + this.projectName + "' and f8='" + this.parameter + "']]></FSQL>"
       tmpData += '</JA_LIST>'
       tmpData += '</soap:Body>'
       tmpData += '</soap:Envelope>'

@@ -2,11 +2,30 @@
   <div class="ContractList">
     <el-row style="margin: 20px 0 0 0;">
       <el-form :inline="true" class="demo-form-inline">
+        <el-form-item label="公司名称" size="mini">
+          <el-input v-model="filterCompanyName_budget" size="mini" placeholder="请输入公司名称" clearable style="width: 150px;"></el-input>
+        </el-form-item>
+        <el-form-item label="事业部" size="mini">
+          <el-input v-model="filterDepartment_budget" size="mini" placeholder="请输入事业部" clearable style="width: 150px;"></el-input>
+        </el-form-item>
+        <el-form-item label="预算月" size="mini">
+          <el-select v-model="filterMonth_budget" size="mini" placeholder="请选择" style="width: 100px;">
+            <el-option
+              v-for="item in monthOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="业务员" size="mini">
+          <el-input v-model="filterSalesMan_budget" size="mini" placeholder="请输入业务员" clearable style="width: 130px;"></el-input>
+        </el-form-item>
         <el-form-item label="项目名称" size="mini">
-          <el-input v-model="filterProjectName" size="mini" placeholder="请输入项目名称" clearable></el-input>
+          <el-input v-model="filterProjectName_budget" size="mini" placeholder="请输入项目名称" clearable style="width: 150px;"></el-input>
         </el-form-item>
         <el-form-item label="" size="mini">
-          <el-button type="primary" size="mini" icon="el-icon-search" @click="getData">搜 索</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-search" @click="search">搜 索</el-button>
         </el-form-item>
       </el-form>
     </el-row>
@@ -29,53 +48,92 @@
       <el-table-column
         prop="公司名称"
         label="公司名称"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        prop="客户名称"
-        label="客户名称"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        prop="编制人"
-        label="编制人"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        prop="编制日期"
-        label="编制日期"
-        width="120"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        prop="部门"
-        label="部门"
-        width="150"
-        show-overflow-tooltip>
-      </el-table-column>
-      <el-table-column
-        prop="销售员"
-        label="销售员"
-        width="150"
-        show-overflow-tooltip>
+        width="150">
       </el-table-column>
       <el-table-column
         prop="项目名称"
         label="项目名称"
-        show-overflow-tooltip>
+        width="200">
+      </el-table-column>
+      <el-table-column
+        prop="项目合同总价"
+        label="项目合同总价"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="预算毛利"
+        label="预算毛利"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="预算毛利率"
+        label="预算毛利率"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="决算金额"
+        label="决算金额"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="决算毛利"
+        label="决算毛利"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="决算毛利率"
+        label="决算毛利率"
+        width="120">
       </el-table-column>
       <el-table-column
         prop="项目类别"
         label="项目类别"
-        show-overflow-tooltip>
+        width="120">
       </el-table-column>
       <el-table-column
-        fixed="right"
+        prop="销售员"
+        label="销售员"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="部门"
+        label="部门"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="公司名称"
+        label="公司名称"
+        width="150">
+      </el-table-column>
+      <el-table-column
+        prop="预算设备及材料"
+        label="预算设备及材料"
+        width="140">
+      </el-table-column>
+      <el-table-column
+        prop="预算安装"
+        label="预算安装"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="预算费用"
+        label="预算费用"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="决算设备及材料"
+        label="决算设备及材料"
+        width="140">
+      </el-table-column>
+      <el-table-column
+        prop="决算安装"
+        label="决算安装"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        fixed="left"
         label="操作"
-        width="180">
+        width="160">
         <template slot-scope="scope">
           <!-- <el-button type="danger" size="mini" v-if="scope.row['合同号'] != '合计'" @click="del(scope.row.finterid)">删 除</el-button> -->
           <el-button v-if="scope.row['审核状态'] == '未审核' && scope.row['合同号'] != '合计'" type="primary" size="mini" @click="examine(scope.row.finterid, '审核')">审 核</el-button>
@@ -104,21 +162,75 @@ export default {
       loading: false,
       tableHieght: 0,
       tableData: [],
-      curPage: 1,
       pageSize: 20,
-      sum: 0
+      sum: 0,
+      monthOptions: [
+        {'label': '全部', 'value': ''},
+        {'label': '1月', 'value': '01'},
+        {'label': '2月', 'value': '02'},
+        {'label': '3月', 'value': '03'},
+        {'label': '4月', 'value': '04'},
+        {'label': '5月', 'value': '05'},
+        {'label': '6月', 'value': '06'},
+        {'label': '7月', 'value': '07'},
+        {'label': '8月', 'value': '08'},
+        {'label': '9月', 'value': '09'},
+        {'label': '10月', 'value': '10'},
+        {'label': '11月', 'value': '11'},
+        {'label': '12月', 'value': '12'}
+      ]
     }
   },
   computed: {
     ...mapState({
       userInfo: state => state.userInfo
     }),
-    filterProjectName: {
+    filterCompanyName_budget: {
       get: function () {
-        return this.$store.state.filterProjectName
+        return this.$store.state.filterCompanyName_budget
       },
       set: function (newValue) {
-        this.$store.state.filterProjectName = newValue
+        this.$store.state.filterCompanyName_budget = newValue
+      }
+    },
+    filterDepartment_budget: {
+      get: function () {
+        return this.$store.state.filterDepartment_budget
+      },
+      set: function (newValue) {
+        this.$store.state.filterDepartment_budget = newValue
+      }
+    },
+    filterMonth_budget: {
+      get: function () {
+        return this.$store.state.filterMonth_budget
+      },
+      set: function (newValue) {
+        this.$store.state.filterMonth_budget = newValue
+      }
+    },
+    filterSalesMan_budget: {
+      get: function () {
+        return this.$store.state.filterSalesMan_budget
+      },
+      set: function (newValue) {
+        this.$store.state.filterSalesMan_budget = newValue
+      }
+    },
+    filterProjectName_budget: {
+      get: function () {
+        return this.$store.state.filterProjectName_budget
+      },
+      set: function (newValue) {
+        this.$store.state.filterProjectName_budget = newValue
+      }
+    },
+    curPage: {
+      get: function () {
+        return this.$store.state.curPage_budget
+      },
+      set: function (newValue) {
+        this.$store.state.curPage_budget = newValue
       }
     }
   },
@@ -134,6 +246,10 @@ export default {
     ...mapActions([
       'updateBudgetId'
     ]),
+    search () {
+      this.curPage = 1
+      this.getData()
+    },
     addBudget () {
       this.$router.push({name: 'BudgetAdd'})
     },
@@ -230,8 +346,8 @@ export default {
       let dataAll = await this.getListAll()
       require.ensure([], () => {
         const { exportJsonToExcel } = require('../vendor/Export2Excel.js')
-        const tHeader = ['公司名称', '客户名称', '编制人', '编制日期', '部门', '销售员', '项目名称', '项目类别']
-        const filterVal = ['公司名称', '客户名称', '编制人', '编制日期', '部门', '销售员', '项目名称', '项目类别']
+        const tHeader = ['公司名称', '项目名称', '项目合同总价', '预算毛利', '预算毛利率', '决算金额', '决算毛利', '决算毛利率', '项目类别', '销售员', '部门', '公司名称', '预算设备及材料', '预算安装', '预算费用', '决算设备及材料', '决算安装']
+        const filterVal = ['公司名称', '项目名称', '项目合同总价', '预算毛利', '预算毛利率', '决算金额', '决算毛利', '决算毛利率', '项目类别', '销售员', '部门', '公司名称', '预算设备及材料', '预算安装', '预算费用', '决算设备及材料', '决算安装']
         const data = this.formatJson(filterVal, dataAll)
         exportJsonToExcel(tHeader, data, '工程项目与决算表')
       })
@@ -245,7 +361,7 @@ export default {
         tmpData += '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> '
         tmpData += '<soap:Body> '
         tmpData += '<JA_LIST xmlns="http://tempuri.org/">'
-        tmpData += "<FSQL><![CDATA[exec [Z_FinalReport] '" + this.filterProjectName + "'," + this.userInfo.fempid + ']]></FSQL>'
+        tmpData += "<FSQL><![CDATA[exec [Z_FinalReport] '" + this.filterProjectName_budget + "','" + this.filterCompanyName_budget + "','" + this.filterDepartment_budget + "','" + this.filterSalesMan_budget + "','" + this.filterMonth_budget + "'," + this.userInfo.fempid + ']]></FSQL>'
         tmpData += '</JA_LIST>'
         tmpData += '</soap:Body>'
         tmpData += '</soap:Envelope>'
@@ -271,7 +387,7 @@ export default {
       tmpData += '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> '
       tmpData += '<soap:Body> '
       tmpData += '<JA_LIST xmlns="http://tempuri.org/">'
-      tmpData += "<FSQL><![CDATA[exec [Z_FinalList] '" + this.filterProjectName + "'," + Number((this.curPage - 1) * this.pageSize + 1) + ',' + this.curPage * this.pageSize + ',' + this.userInfo.fempid + ']]></FSQL>'
+      tmpData += "<FSQL><![CDATA[exec [Z_FinalList] '" + this.filterProjectName_budget + "','" + this.filterCompanyName_budget + "','" + this.filterDepartment_budget + "','" + this.filterSalesMan_budget + "','" + this.filterMonth_budget + "'," + Number((this.curPage - 1) * this.pageSize + 1) + ',' + this.curPage * this.pageSize + ',' + this.userInfo.fempid + ']]></FSQL>'
       tmpData += '</JA_LIST>'
       tmpData += '</soap:Body>'
       tmpData += '</soap:Envelope>'
